@@ -4,14 +4,19 @@ let formEle = document.querySelector("form");
 //------------------------- Add tasks -------------------------//
 formEle.addEventListener("submit", (e) => {
   e.preventDefault();
-  let newLi = document.createElement("li");
-  newLi.className = "list-group-item";
-  newLi.append(document.createTextNode(e.target[0].value));
-  let btn = document.createElement("button");
-  btn.append("X");
-  btn.className = "btn list-btn btn-sm float-right delete";
-  newLi.append(btn);
-  listEle.append(newLi);
+  if (e.target[0].value === "") {
+    alert("Item name must not be empty");
+  } else {
+    let newLi = document.createElement("li");
+    newLi.className = "list-group-item";
+    newLi.append(document.createTextNode(e.target[0].value));
+    let btn = document.createElement("button");
+    btn.append("X");
+    btn.className = "btn list-btn btn-sm float-right delete";
+    newLi.append(btn);
+    listEle.append(newLi);
+  }
+  
 });
 
 //------------------------- Delete Tasks -------------------------//
