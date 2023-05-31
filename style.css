@@ -1,0 +1,70 @@
+:root {
+  --backgroud-color: white;
+}
+
+body {
+  background-color: var(--backgroud-color);
+  display: flex;
+  flex-direction: column;
+}
+
+#themeSelector {
+  margin: 20px auto;
+  background-color: white;
+}
+
+.theme-selector {
+  border: 1px solid lightgrey;
+  border-radius: 2%;
+  width: fit-content;
+  padding: 20px 30px;
+  font-size: large;
+}
+
+input[type="radio"] {
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: solid 1px grey;
+  margin: 0 15px 0 5px;
+  outline: 1px solid grey;
+  outline-offset: 3px;
+}
+
+input[type="radio"]:checked {
+  background-color: var(--theme-color);
+  outline: 2px solid var(--theme-color);
+}
+
+#light {
+  --theme-color: #edeec9;
+}
+
+:root:has(#light:checked) {
+  --backgroud-color: #edeec9;
+}
+
+#dark {
+  --theme-color: #04151f;
+}
+
+:root:has(#dark:checked) {
+  --backgroud-color: #04151f;
+}
+
+#blue {
+  --theme-color: #c4fff9;
+}
+
+:root:has(#blue:checked) {
+  --backgroud-color: #c4fff9;
+}
+
+#red {
+  --theme-color: #660708;
+}
+
+:root:has(#red:checked) {
+  --backgroud-color: #660708;
+}
