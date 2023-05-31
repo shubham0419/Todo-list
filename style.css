@@ -1,70 +1,48 @@
 :root {
-  --backgroud-color: white;
+  background-color: white;
+  --bg-color:#03045e;
 }
 
 body {
-  background-color: var(--backgroud-color);
+  height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-#themeSelector {
-  margin: 20px auto;
+.header{
+  background-color: var(--bg-color);
+}
+
+.dropdown{
+  align-self: center;
+}
+
+.light {
   background-color: white;
+  --bg-color:#03045e;
 }
 
-.theme-selector {
-  border: 1px solid lightgrey;
-  border-radius: 2%;
-  width: fit-content;
-  padding: 20px 30px;
-  font-size: large;
+.dark {
+  background-color: #000d15;
+  --bg-color: #000;
 }
 
-input[type="radio"] {
-  appearance: none;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  border: solid 1px grey;
-  margin: 0 15px 0 5px;
-  outline: 1px solid grey;
-  outline-offset: 3px;
+.blue {
+  background-color: #0ef;
+  --bg-color:#00607a;
 }
 
-input[type="radio"]:checked {
-  background-color: var(--theme-color);
-  outline: 2px solid var(--theme-color);
+.red {
+  background-color: #660708;
+  --bg-color:#230000;
 }
 
-#light {
-  --theme-color: #edeec9;
+/* hero */
+.hero{
+  margin-top: 80px;
 }
 
-:root:has(#light:checked) {
-  --backgroud-color: #edeec9;
-}
-
-#dark {
-  --theme-color: #04151f;
-}
-
-:root:has(#dark:checked) {
-  --backgroud-color: #04151f;
-}
-
-#blue {
-  --theme-color: #c4fff9;
-}
-
-:root:has(#blue:checked) {
-  --backgroud-color: #c4fff9;
-}
-
-#red {
-  --theme-color: #660708;
-}
-
-:root:has(#red:checked) {
-  --backgroud-color: #660708;
+.list-btn{
+  background-color: var(--bg-color);
+  color: white;
 }

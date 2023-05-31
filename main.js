@@ -9,7 +9,7 @@ formEle.addEventListener("submit", (e) => {
   newLi.append(document.createTextNode(e.target[0].value));
   let btn = document.createElement("button");
   btn.append("X");
-  btn.className = "btn btn-danger btn-sm float-right delete";
+  btn.className = "btn list-btn btn-sm float-right delete";
   newLi.append(btn);
   listEle.append(newLi);
 });
@@ -17,7 +17,7 @@ formEle.addEventListener("submit", (e) => {
 //------------------------- Delete Tasks -------------------------//
 
 listEle.addEventListener("click", (e) => {
-  if (e.target.classList.contains("btn-danger")) {
+  if (e.target.classList.contains("list-btn")) {
     if (confirm("Delete item ?")) {
       listEle.removeChild(e.target.parentElement);
     }
@@ -44,31 +44,120 @@ searchEle.addEventListener("keyup", (e) => {
   });
 });
 
-//------------------------- Theme Store & apply after load -------------------------//
-let themes = document.querySelectorAll("input[type='radio']");
+// --------------------------------- Theme selector
+const body = document.querySelector("body");
 
-// Store Theme
-
-function StoreTheme(theme) {
-  localStorage.setItem("theme", theme);
+function reClass() {
+  for (let i = 0; i < body.classList.length; i++){
+    body.classList.remove(body.classList[i]);
+  }
 }
 
-// Apply theme
+const theme = document.querySelector("#theme").children;
 
-function ApplyTheme() {
-  let prevTheme = localStorage.getItem("theme");
+function removeactive() {
+  for (let li = 0; li < 4; li++){
+    theme[li].classList.remove("active");
+  }
+}
 
-  themes.forEach((theme) => {
-    if (theme.id === prevTheme) {
-      theme.checked = true;
+
+for (let li = 0; li < 4; li++){
+  theme[li].addEventListener("click", (e) => {
+    reClass();
+    body.classList.add(e.target.id);
+    removeactive();
+    theme[li].classList.add("active");
+  })
+}
+
+// -------------------------------- Drag Drop
+
+const listItems = document.querySelectorAll("#items .list-group-item");
+
+let dragSrcElement = null;
+
+function dragStart(e){
+
+    dragSrcElement = this
+
+    e.dataTransfer.effectAllowed = "move";
+    e.dataTransfer.setData("text/html", this.innerHTML)
+}
+
+function dragEnter(){
+
+    // console.log("dragEnter")
+}
+
+
+function dragOver(e){
+
+    e.preventDefault();
+
+    e.dataTransfer.dropEffect = "move";
+    // console.log("dragOver")
+
+}
+
+function dragLeave(){
+
+    // console.log("dragLeave")
+}
+
+
+function handleDrop(e){
+
+        if(dragSrcElement !== this){
+
+        dragSrcElement.innerHTML = this.innerHTML;
+
+        this.innerHTML = e.dataTransfer.getData("text/html");
     }
-  });
+
+
+    // console.log("drop")
 }
 
-themes.forEach((theme) => {
-  theme.addEventListener("click", (e) => {
-    StoreTheme(e.target.id);
-  });
-});
+listItems.forEach((item)=>{
 
-document.onload = ApplyTheme();
+    item.addEventListener("dragstart", dragStart)
+
+    item.addEventListener("dragenter", dragEnter)
+
+    item.addEventListener("dragover", dragOver)
+
+    item.addEventListener("dragleave", dragLeave)
+
+    item.addEventListener("drop", handleDrop)
+
+})
+
+//------------------------- Theme Store & apply after load -------------------------//
+// let themes = document.querySelectorAll("input[type='radio']");
+
+// -------------------------Store Theme
+
+// function StoreTheme(theme) {
+//   localStorage.setItem("theme", theme);
+// }
+
+// ------------------------Apply theme
+
+// function ApplyTheme() {
+//   let prevTheme = localStorage.getItem("theme");
+
+//   themes.forEach((theme) => {
+//     if (theme.id === prevTheme) {
+//       theme.checked = true;
+//     }
+//   });
+// }
+
+// themes.forEach((theme) => {
+//   theme.addEventListener("click", (e) => {
+//     StoreTheme(e.target.id);
+//   });
+// });
+
+// document.onload = ApplyTheme();
