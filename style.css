@@ -4,7 +4,7 @@
 }
 
 body {
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -16,8 +16,19 @@ body {
   z-index: 100;
 }
 
+#menu-icon{
+  font-size: 3.5rem;
+  display: none;
+}
+
+#filter{
+  margin-bottom: 5px;
+}
+
 .dropdown{
   align-self: center;
+  margin-left: 14px;
+  margin-bottom: 5px;
 }
 
 .light {
@@ -26,7 +37,7 @@ body {
 }
 
 .dark {
-  background-color: #000d15;
+  background-color: #001420;
   --bg-color: #000;
 }
 
@@ -48,4 +59,24 @@ body {
 .list-btn{
   background-color: var(--bg-color);
   color: white;
+}
+.temp-header{
+  height:105px;
+}
+.side-bar{
+  margin-left: 3000px;
+}
+.temp-hero{
+  margin-top: 280px;
+}
+@media all and (max-width: 780px){
+  #btn{
+    margin-top: 10px;;
+  }
+  
+  #menu-icon{
+    display: inline;
+    position: fixed;
+    right:7%
+  }
 }

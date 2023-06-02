@@ -1,6 +1,30 @@
 let listEle = document.querySelector("#items");
 
 let formEle = document.querySelector("form");
+
+let searchEle = document.querySelector("input[id ='filter' ");
+
+const themeBtn = document.querySelector(".dropdown");
+// -----------------------------------nav - toggle
+const toggleBtn = document.querySelector("#menu-icon");
+const header = document.querySelector(".header");
+const hero = document.querySelector(".hero");
+
+toggleBtn.addEventListener("click", () => {
+  if (themeBtn.classList.contains("side-bar")) {
+    header.classList.remove("temp-header");
+    hero.classList.add("temp-hero");
+    themeBtn.classList.remove("side-bar");
+    searchEle.classList.remove("side-bar");
+  } else {
+    header.classList.add("temp-header");
+    hero.classList.remove("temp-hero");
+    themeBtn.classList.add("side-bar");
+    searchEle.classList.add("side-bar");
+  }
+  
+})
+
 //------------------------- Add tasks -------------------------//
 formEle.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -31,7 +55,6 @@ listEle.addEventListener("click", (e) => {
 
 //------------------------- Search Filters -------------------------//
 
-let searchEle = document.querySelector("input[id ='filter' ");
 
 searchEle.addEventListener("keyup", (e) => {
   e.preventDefault();
